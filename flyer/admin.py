@@ -30,7 +30,6 @@ class SavingInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['flyer', 'product', 'price', 'units', 'description']}),
-        (None, {'fields': ['insert_date', 'update_date']}),
     ]
     inlines = [SavingInline]
     list_display = ('product', 'price', 'units', 'description', 'flyer')
@@ -44,7 +43,6 @@ class FlyerAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['flyer', 'store']}),
         (None, {'fields': ['start_date', 'end_date']}),
-        (None, {'fields': ['insert_date', 'update_date']}),
     ]
     inlines = [ProductInline]
     list_display = ('flyer', 'current_flyer', 'store', 'start_date', 'end_date')
