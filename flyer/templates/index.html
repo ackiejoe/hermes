@@ -1,0 +1,21 @@
+{% if all_sales %}
+    <table>
+    {% for sale in all_sales %}
+        <tr>
+        	<td>{{ sale.product }}</td>
+        	<td>{{ sale.brand }}</td>
+        	<td>{{ sale.category }}</td>
+        	<td>{{ sale.flyer }}</td>
+        	<td>{{ sale.price_sale }}</td>
+        	<td>{{ sale.price_reg }}</td>
+        	<td>{{ sale.unit }}</td>
+        	<td>{{ sale.description }}</td>
+        	<td>{{ sale.insert }}</td>
+        	<td>{{ sale.update }}</td>
+        	
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No sales are available.</p>
+{% endif %}
