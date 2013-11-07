@@ -1,9 +1,11 @@
 from django.contrib import admin
-from flyer.models import Country
-from flyer.models import Province_state
 from flyer.models import Store
+from flyer.models import Location
 from flyer.models import Flyer
 from flyer.models import Product
+from flyer.models import Brand
+from flyer.models import Category
+from flyer.models import Sale
 from flyer.models import Saving
 
 # class CountryAdmin(admin.ModelAdmin):
@@ -27,29 +29,29 @@ class SavingInline(admin.TabularInline):
     model = Saving
     extra = 1
     
-class ProductAdmin(admin.ModelAdmin):
+class SaleAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['flyer', 'product', 'price', 'units', 'description']}),
+        (None, {'fields': ['product', 'brand', 'category', 'flyer', 'price_sale', 'price_reg', 'unit', 'description']}),
     ]
     inlines = [SavingInline]
-    list_display = ('product', 'price', 'units', 'description', 'flyer')
+    list_display = ('product', 'brand', 'category', 'flyer', 'price_sale', 'price_reg', 'unit', 'description')
 
-class ProductInline(admin.TabularInline):
-    inlines = [SavingInline]
-    model = Product
+class SaleInline(admin.TabularInline):
+    model = Sale
     extra = 5
 
 class FlyerAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['flyer', 'store']}),
+        (None, {'fields': ['flyer', 'location']}),
         (None, {'fields': ['start_date', 'end_date']}),
     ]
-    inlines = [ProductInline]
-    list_display = ('flyer', 'current_flyer', 'store', 'start_date', 'end_date')
+    inlines = [SaleInline]
+    list_display = ('flyer', 'current_flyer', 'location', 'start_date', 'end_date')
 
-admin.site.register(Country)
-admin.site.register(Province_state)
 admin.site.register(Store)
+admin.site.register(Location)
+admin.site.register(Product)
+admin.site.register(Brand)
+admin.site.register(Category)
 admin.site.register(Flyer, FlyerAdmin)
-admin.site.register(Product, ProductAdmin)
-#admin.site.register(Saving)
+admin.site.register(Sale, SaleAdmin)
