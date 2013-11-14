@@ -1,3 +1,7 @@
+{% extends "flyer/base.html" %}
+
+
+{%block content%}
 {% if all_sales %}
     <table>
     {% for sale in all_sales %}
@@ -10,12 +14,17 @@
         	<td>{{ sale.price_reg }}</td>
         	<td>{{ sale.unit }}</td>
         	<td>{{ sale.description }}</td>
-        	<td>{{ sale.insert }}</td>
-        	<td>{{ sale.update }}</td>
-        	
+        	<td>
+        			<ul>
+					{% for saving in sale.saving_set.all %}
+					    <li>{{ saving.saving }}</li>
+					{% endfor %}
+					</ul>
+        	</td>	
         </tr>
     {% endfor %}
     </table>
 {% else %}
     <p>No sales are available.</p>
 {% endif %}
+{%endblock%}
